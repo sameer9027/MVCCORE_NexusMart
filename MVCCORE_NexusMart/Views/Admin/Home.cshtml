@@ -1,0 +1,15 @@
+﻿
+@model IEnumerable<MVCCORE_NexusMart.Models.Product>
+
+@{
+    Layout = "_AdminDashboard";
+    ViewData["Title"] = "Admin Dashboard";
+} 
+
+
+
+<div class="text-center fw-bolder mb-4"> <h1> Welcome Admin 👋</h1></div>
+
+
+<partial class="mt-2" name="_ProductList" model="Model" />
+        

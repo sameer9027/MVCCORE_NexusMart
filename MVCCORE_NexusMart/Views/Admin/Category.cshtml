@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Category>
+@{
+    Layout = "_AdminDashboard";
+    ViewData["Title"] = "Manage Categories";
+}
+
+<div class="d-flex justify-content-between align-items-center  mb-4">
+    <h3>Manage Categories</h3>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+        <i class="fas fa-plus"></i> Add Category
+    </button>
+</div>
+<div id="categoryListContainer">
+    @await Html.PartialAsync("_categoryList", Model)
+</div>
+
+
+<div class="modal fade" id="addCategoryModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="addCategoryForm" asp-action="Category" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="categoryName" class="form-label">Category Name</label>
+                        <input type="text" class="form-control" id="categoryName" name="name" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Category</button>
+                </div>
+            </form>
+        </div>
+    </div>  
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#addCategoryForm').on('submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: '/Admin/Category',
+                    type: 'POST',
+                    data: $(this).serialize(), // It gathers every successful input inside the form (name/value pairs) using their name attributes. If later you add fields (e.g., Description, IsActive), no JS change needed.
+                    success: function(result) {
+                        $('#categoryListContainer').html(result);
+                        $('#addCategoryModal').modal('hide');
+                        $('#addCategoryForm')[0].reset();
+                    },
+                    error: function() {
+                        alert('An error occurred while adding the category.');
+                    }
+                });
+            });
+        });
+    </script>
+}

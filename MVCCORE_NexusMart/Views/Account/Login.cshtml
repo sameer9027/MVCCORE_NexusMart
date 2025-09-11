@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Login - NexusMart";
+}
+
+<h2 class="mb-4">Login to Your NexusMart Account</h2>
+
+<form asp-action="Login" method="post">
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email address</label>
+        <input type="email" name="Email" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" name="Password" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Login</button>
+
+    <div class="mt-3 text-center">
+        <p><a asp-controller="Admin"asp-action="Login"> Admin Login </a> </p>
+        <p>New to NexusMart? <a asp-controller="Account" asp-action="Register">Register here</a></p>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

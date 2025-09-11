@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>NexusMart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Font Awesome (optional for icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand fw-bold text-primary" href="/">NexusMart</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+               
+                <div class="d-flex justify-content-between align-items-center w-100">
+                   
+                    <select class="form-select form-select-sm border-primary" style="width: auto;" id="ddlcategory" onchange="window.location.href='/?categoryID='+this.value">
+                        <option value="0">Shop by Category</option>
+                            @foreach (var category in ViewBag.Categories ?? new List<Category>())
+                        {
+                            <option value="@category.Category_Id">@category.Category_Name</option>
+                           }
+                       </select>
+
+                    <!-- Search form -->
+                    <form class="d-flex" style="width: 40%;" asp-controller="Product" asp-action="Search">
+                        <input class="form-control me-2" type="search" name="query" placeholder="Search products..." />
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                    </form>
+                    
+                    <!-- Action buttons -->
+                    <div class="d-flex">
+                        <a href="/Cart" class="btn btn-outline-secondary me-2">
+                            <i class="fas fa-shopping-cart"></i> Cart
+                        </a>
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-primary me-2">
+                            <i class="fas fa-user"></i> Login
+                        </a>
+                        <a asp-controller="Admin" asp-action="Login" class="btn btn-warning">
+                            <i class="fa-solid fa-user-tie m-1"></i>Admin
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navvar end -->
+
+    <!-- Main Content Area -->
+    <div class="container my-4">
+        @RenderBody()
+    </div>
+
+    <!-- Footer (mt-auto keeps it at bottom when content short) -->
+    <footer class="bg-light mb-1 text-center py-3 mt-auto">
+        <p class="mb-0">&copy; @DateTime.Now.Year NexusMart. All rights reserved.</p>
+    </footer>
+
+    
+
+</body>
+</html>

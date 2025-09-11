@@ -1,0 +1,20 @@
+﻿@model MVCCORE_NexusMart.Models.Product
+
+<div class="card h-100 shadow-sm">
+    <img src="~/MyProdImage/@Model.Product_Image" class="card-img-top p-3" 
+         alt="@Model.Product_Name" style="height: 200px; object-fit: contain;">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Product_Name</h5>
+        <p class="badge bg-secondary">@Model.Category?.Category_Name</p>
+        <p class="card-text">@Model.Product_Description?.Substring(0, Math.Min(100, Model.Product_Description?.Length ?? 0))</p>
+        <h6 class="text-primary mt-2">₹@Model.Product_Price.ToString("0.00")</h6>
+    </div>
+    <div class="card-footer bg-white">
+        <div class="d-flex justify-content-between">
+            <a href="/Product/Details/@Model.Product_ID" class="btn btn-sm btn-outline-primary">Details</a>
+            <button class="btn btn-sm btn-primary" onclick="addToCart(@Model.Product_ID)">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+        </div>
+    </div>
+</div>

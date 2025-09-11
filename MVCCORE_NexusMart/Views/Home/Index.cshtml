@@ -1,0 +1,47 @@
+﻿@model MVCCORE_NexusMart.ViewModel.VMCategoryProduct
+
+@{
+    ViewData["Title"] = "NexusMart - Home";
+}
+
+<div class="container">
+    <!-- Category title or welcome message -->
+    @if (Model.SelectedCatagoryId > 0)
+    {
+        var categoryName = Model.Categories.FirstOrDefault(c => c.Category_Id == Model.SelectedCatagoryId)?.Category_Name;
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>@categoryName</h2>
+            <a href="/" class="btn btn-outline-primary">View All Products</a>
+        </div>
+    }
+    else
+    {
+        <div class="mb-4">
+            <h2>Featured Products</h2>
+            <p class="text-muted">Discover our wide range of products</p>
+        </div>
+    }
+
+    <!-- Products display -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @if (Model.Products != null && Model.Products.Any())
+        {
+            @foreach (var product in Model.Products)
+            {
+                <div class="col">
+                    <partial name="_ProductCard" model="product" />
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    No products available in this category.
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

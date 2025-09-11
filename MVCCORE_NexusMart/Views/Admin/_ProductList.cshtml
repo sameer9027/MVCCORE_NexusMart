@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MVCCORE_NexusMart.Models.Product>
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Product List";
+  
+}
+
+<h3>PRODUCT LIST</h3>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Product_ID</td>
+            <td>
+                @if (!string.IsNullOrEmpty(product.Product_Image))
+                {
+                    <img src="~/MyProdImage/@product.Product_Image" 
+                         alt="@product.Product_Name" 
+                         class="img-thumbnail" 
+                         style="max-width: 100px; max-height: 100px;" />
+                }
+                else
+                {
+                    <span class="text-muted">No Image</span>
+                }
+            </td>
+            <td>@product.Product_Name</td>
+            <td>@product.Product_Price.ToString("C")</td>
+            <td>@product.Category?.Category_Name</td>
+            <td>
+                <a asp-action="EditProduct" asp-route-id="@product.Product_ID" class="btn btn-sm btn-warning">Edit</a>
+                <a asp-action="DeleteProduct" asp-route-id="@product.Product_ID" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+

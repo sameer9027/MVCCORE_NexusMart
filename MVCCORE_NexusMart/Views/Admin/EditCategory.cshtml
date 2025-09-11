@@ -1,0 +1,44 @@
+﻿@model MVCCORE_NexusMart.Models.Category
+
+@{
+    ViewData["Title"] = "EditCategory";
+    Layout = "~/Views/Shared/_AdminDashboard.cshtml";
+}
+
+@if (TempData["message"] != null)
+{
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>@TempData["message"]</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+
+
+}
+
+<h1>EditCategory</h1>
+
+<h4>Category</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditCategory">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Category_Id" />
+            <div class="form-group">
+                <label asp-for="Category_Name" class="control-label"></label>
+                <input asp-for="Category_Name" class="form-control" />
+                <span asp-validation-for="Category_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Category">Back to List</a>
+</div>
+

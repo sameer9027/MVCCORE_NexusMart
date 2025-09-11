@@ -1,0 +1,115 @@
+﻿@model MVCCORE_NexusMart.Models.Customer
+
+@{
+    ViewData["Title"] = "Register - NexusMart";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm border-0 mt-5">
+                <div class="card-body p-4">
+                    <h3 class="text-center mb-4">Create Your NexusMart Account 🛍️</h3>
+
+                    <form asp-action="Register" method="post" enctype="multipart/form-data">
+                        <!-- Name -->
+                        <div class="row mb-3 align-items-center">
+                            <label asp-for="Customer_Name" class="col-sm-4 col-form-label text-end"></label>
+                            <div class="col-sm-8">
+                                <input asp-for="Customer_Name" class="form-control" />
+                                <span asp-validation-for="Customer_Name" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="row mb-3 align-items-center">
+                            <label asp-for="Customer_Phone" class="col-sm-4 col-form-label text-end"></label>
+                            <div class="col-sm-8">
+                                <input asp-for="Customer_Phone" class="form-control" />
+                                <span asp-validation-for="Customer_Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="row mb-3 align-items-center">
+                            <label asp-for="Customer_Email" class="col-sm-4 col-form-label text-end"></label>
+                            <div class="col-sm-8">
+                                <input asp-for="Customer_Email" class="form-control" />
+                                <span asp-validation-for="Customer_Email" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="row mb-3 align-items-center">
+                            <label asp-for="Customer_Password" class="col-sm-4 col-form-label text-end"></label>
+                            <div class="col-sm-8">
+                                <input asp-for="Customer_Password" class="form-control" />
+                                <span asp-validation-for="Customer_Password" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Country -->
+                        <div class="row mb-3 align-items-center">
+                            <label asp-for="Customer_Country" class="col-sm-4 col-form-label text-end"></label>
+                            <div class="col-sm-8">
+                                <input asp-for="Customer_Country" class="form-control" />
+                                <span asp-validation-for="Customer_Country" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- City -->
+                        <div class="row mb-3 align-items-center">
+                            <label asp-for="Customer_City" class="col-sm-4 col-form-label text-end"></label>
+                            <div class="col-sm-8">
+                                <input asp-for="Customer_City" class="form-control" />
+                                <span asp-validation-for="Customer_City" class="text-danger"></span>
+                            </div></div>
+
+                        <!-- Address -->
+                        <div class="row mb-3 align-items-center">
+                            <label asp-for="Customer_Address" class="col-sm-4 col-form-label text-end"></label>
+                            <div class="col-sm-8">
+                                <textarea asp-for="Customer_Address" class="form-control" rows="2"></textarea>
+                                <span asp-validation-for="Customer_Address" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="row mb-3 align-items-center">
+                            <label asp-for="Customer_Gender" class="col-sm-4 col-form-label text-end"></label>
+                            <div class="col-sm-8">
+                                <select asp-for="Customer_Gender" class="form-select">
+                                    <option value="">-- Select Gender --</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <span asp-validation-for="Customer_Gender" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="row mb-4 align-items-center">
+                            <label asp-for="Customer_Image" class="col-sm-4 col-form-label text-end">Profile Image</label>
+                            <div class="col-sm-8">
+                                <input type="file" name="Customer_Image" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success w-100">Register</button>
+                        </div>
+
+                        <div class="mt-3 text-center">
+                            <small>Already have an account? <a href="/Account/Login">Login here</a></small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
